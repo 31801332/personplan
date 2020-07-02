@@ -6,3 +6,4 @@
 987
 
 git bash
+git intellij 2
