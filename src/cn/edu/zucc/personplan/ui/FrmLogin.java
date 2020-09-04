@@ -29,7 +29,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 	private JButton btnLogin = new JButton("µÇÂ½");
 	private JButton btnCancel = new JButton("ÍË³ö");
 	private JButton btnRegister = new JButton("×¢²á");
-	
+
 	private JLabel labelUser = new JLabel("ÓÃ»§£º");
 	private JLabel labelPwd = new JLabel("ÃÜÂë£º");
 	private JTextField edtUserId = new JTextField(20);
@@ -69,20 +69,20 @@ public class FrmLogin extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btnLogin) {
-			String userid=this.edtUserId.getText();
-			String pwd=new String(this.edtPwd.getPassword());
+			String userid = this.edtUserId.getText();
+			String pwd = new String(this.edtPwd.getPassword());
 			try {
-				BeanUser.currentLoginUser= PersonPlanUtil.userManager.login(userid, pwd);
+				BeanUser.currentLoginUser = PersonPlanUtil.userManager.login(userid, pwd);
 			} catch (BaseException e1) {
-				JOptionPane.showMessageDialog(null, e1.getMessage(), "´íÎó",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "´íÎó", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			this.setVisible(false);
-			
+
 		} else if (e.getSource() == this.btnCancel) {
 			System.exit(0);
-		} else if(e.getSource()==this.btnRegister){
-			FrmRegister dlg=new FrmRegister(this,"×¢²á",true);
+		} else if (e.getSource() == this.btnRegister) {
+			FrmRegister dlg = new FrmRegister(this, "×¢²á", true);
 			dlg.setVisible(true);
 		}
 	}
