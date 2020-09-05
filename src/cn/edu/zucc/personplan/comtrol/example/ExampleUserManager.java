@@ -77,8 +77,13 @@ public class ExampleUserManager implements IUserManager {
 			java.sql.PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setString(1, userid);
 			java.sql.ResultSet rs = pst.executeQuery();
-			if (rs.next()) {
-				ans = new BeanUser(rs.getString(1), rs.getString(2), rs.getDate(3));
+			if (!rs.next()) {
+				throw new BaseException("用户不存在");
+			}
+			ans = new BeanUser(rs.getString(1), rs.getString(2), rs.getDate(3));
+			if(ans.getPwd().compareTo(pwd)!=0){
+				ans=null;
+				throw new BaseException("密码错误");
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -92,8 +97,6 @@ public class ExampleUserManager implements IUserManager {
 				}
 			}
 		}
-
-		ans = ans.getPwd().compareTo(pwd) == 0 ? ans : null;
 		return ans;
 	}
 

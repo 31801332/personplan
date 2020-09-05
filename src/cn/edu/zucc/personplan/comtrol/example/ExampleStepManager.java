@@ -55,4 +55,7 @@ public class ExampleStepManager implements IStepManager {
 		
 	}
 
+	public static void main(String[] args) {
+
+	}
 }
